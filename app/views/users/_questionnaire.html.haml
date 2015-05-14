@@ -1,0 +1,24 @@
+.questionnaire 
+  %h2 let's find you your perfect date
+  #questionnaire
+    %p.title Male or Female?
+    %input.qn{:type=>"radio", :name => 'gender', :value => 'male'}Male 
+    %input.qn{:type=>"radio", :name => 'gender', :value => 'female'}Female 
+    %input.qn{:type=>"radio", :name => 'gender', :value => 'both'}Both 
+
+    %p.title Neutered/ spayed - yay or nay?
+    %input.qn{:type=>"radio", :name => 'neutered', :value => 'neutered'}Yes
+    %input.qn{:type=>"radio", :name => 'neutered', :value => 'unneutered'}Nope
+
+    %p.title When are you usually free?
+    %input.qn{:type=>"checkbox", :name => 'availability', :value => 'weekday-evening'}Weekday Evenings
+    %input.qn{:type=>"checkbox", :name => 'availability', :value => 'weekday-daytime'}Weekday Daytime
+    %input.qn{:type=>"checkbox", :name => 'availability', :value => 'weekends'}Weekends
+
+    %p.title Kind'ov doggy activities?
+    %input.qn{:type=>"checkbox", :name => 'activity', :value => 'indoor'}Indoor
+    %input.qn{:type=>"checkbox", :name => 'activity', :value => 'outdoor'}Outdoor
+
+    %p
+      %button.btn.btn-default.btn-lg#qn-submit Date Me
+

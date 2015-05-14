@@ -1,0 +1,20 @@
+.form
+  .playdate-form
+    =minimal_form_for @playdate do |f|
+      %p= f.hidden_field :dog1_id, :value => current_user.id 
+
+      %p Date Name
+      %input#dog2-name{:type => "text", :name => "playdate[dog2_id]"} 
+
+      %p= f.input :name, wrapper_html: { class: 'playdate-name' }, required: true, placeholder: 'name your playdate!'
+
+      %p= f.input :description, wrapper_html: { class: 'playdate-description' }, placeholder: 'what are you dogs gonna do?'
+      %p Date
+      %p= f.input :date, wrapper_html: { class: 'playdate-date' }, required: true, as: :date, start_year:Date.today.year, end_year: Date.today.year + 2, discard_day: false, order: [:day, :month, :year]
+
+      %p= f.input :place, wrapper_html: { class: 'playdate-place' }, required: true, placeholder: 'meet-up location'
+      %p Time
+      %p= f.input :time, wrapper_html: { class: 'playdate-time' }, required: true
+
+      .submit
+      %p= f.button :submit, "Create Playdate", class: "submit-button"

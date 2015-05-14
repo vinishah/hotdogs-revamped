@@ -1,0 +1,19 @@
+%h2= @event.name
+
+%p= "This event takes place in #{@event.place}. This event is rated a #{@event.event_rating} star event."
+
+- if @event.organizer_id === current_user.id
+  %p= link_to('Edit', edit_event_path(@event))
+  %p= link_to('Delete', event_path(@event), method: :delete)
+
+
+
+%button#like{value: @event.id} Like
+
+-likes = @event.get_likes.size 
+#like-size=likes
+
+%button#dislike Dislike
+
+- dislikes = @event.get_downvotes.size
+#dislike-size=dislikes

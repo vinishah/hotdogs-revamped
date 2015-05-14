@@ -1,0 +1,28 @@
+.suggest-by-preference
+  %p You want these qualities in your date:
+  - current_user.preference_list.each do |pref|
+    =pref
+  %p You are highly matched with these hot dogs: 
+  - high_matches =  User.tagged_with(current_user.preference_list, :match_all => true)
+  - high_matches.each do |highmatch|
+    - unless highmatch.dog_name == current_user.dog_name
+      %p= link_to(highmatch.dog_name, user_path(highmatch))
+
+-# .search-by
+-#   %button Male
+-#   %button Female
+
+-# - User.tagged_with(["#{}"], :match_all => true)
+-# - User.tagged_with(["#{}"], :any => true)
+-# - User.tagged_with(["#{}"], :exclude => true)
+
+-# -User.where(gender:"male").each do |male|
+-#   =male.dog_name
+-# -User.where(gender:"female").each do |female|
+-# -User.where(breed:"#{}").each do |female|
+-# -User.where(neutered:true).each do |neutered|
+-# -User.where(neutered:false).each do |unneutered|
+-# -User.where(neutered:false).each do |unneutered|
+-# -User.where(dog_age>5).each do |young|
+-# -User.where(5<dog_age<10).each do |middle|
+-# -User.where(dog_age>10).each do |old|

@@ -1,0 +1,15 @@
+-# NAVIGATION BAR
+-# only visible to logged in users
+.nav 
+  =link_to('All My Playdates', playdates_path)
+  =link_to('All Events', events_path)
+  =link_to('New Playdate', new_playdate_path)
+  = link_to('New Event', new_event_path)
+
+  =link_to('Profile', user_path(current_user))
+
+  =link_to('Suggest Dates', suggest_path)
+
+  = link_to('Logout', destroy_user_session_path, :method => :delete)
+
+  = link_to('Edit registration', edit_user_registration_path)

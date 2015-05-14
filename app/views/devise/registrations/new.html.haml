@@ -1,0 +1,20 @@
+.sign-up-form
+  %h2#join-title hello there!
+  .form-group
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      = f.error_notification
+      .form-inputs
+        = f.input :email, required: true, autofocus: true
+        = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+        = f.input :password_confirmation, required: true
+        = f.input :dog_name, required: true
+        = f.file_field :dog_picture, required: true
+        = f.input :dog_age, required: true
+        = f.input :breed, required: true
+        = f.input :neutered, required: true
+        = f.input :owner_name, required: true
+        = f.file_field :owner_picture, required: true
+        = f.input :address, required: true
+      .form-actions
+        = f.button :submit, "Sign up"
+    = render "devise/shared/links"

@@ -1,0 +1,27 @@
+- if user_signed_in? === false
+  #about-us
+    %section.window#1
+      %p#hotdogs Hotdogs
+      %p.tag-line Doggy Dating App
+      = render :partial => 'layouts/register'
+    %section.window#2
+      %h2#window-two-text about us
+      %p Whether you are looking to: find another dog to join yours in the park, find an answer to a question, or simply share your thoughts on pet ownership, you will find it here!
+      
+    %section.window#3
+      %h2 tailor
+      %p Set up your profile for optimum dog to dog matching! Customize your experience!
+    %section.window#4
+      %h2 match
+      %p Choose from a selection of an array of little pups and filter by characteristics. Or pick from one of our hand-generated matches!
+    %section.window#5
+      %h2 date
+      %p Propose a date with your newly-matched buddy! He or she may just be the mustard to your hotdog, your ketchup to your bun.
+
+    %section.window#6
+      %h2 community
+      %p Join doggie events to socialize with our Hotdogs. Better yet, organize your own!
+    %section.window#7
+      %h2 join the puppies!
+      %p Have security in others! Encourages humane treatment of pets and people alike.
+      %p= render :partial => 'layouts/register'

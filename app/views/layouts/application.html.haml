@@ -1,0 +1,25 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title HotdogsApp
+    = stylesheet_link_tag 'application', media: 'all'
+
+
+    %script{:src => "https://maps.googleapis.com/maps/api/js?key=AIzaSyA00iEetE8yy2uZY4ejEskfM6zypsXnhps&libraries=places"}
+    <link href='https://fonts.googleapis.com/css?family=Raleway:500,800,700,900,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Dosis:400,500' rel='stylesheet' type='text/css'>
+    = javascript_include_tag 'application'
+    = csrf_meta_tags
+
+  %body
+
+    %p.notice= notice
+    -# %p.alert= alert
+
+    - if user_signed_in?
+      .nav
+        %p= render 'layouts/nav'
+
+    = yield

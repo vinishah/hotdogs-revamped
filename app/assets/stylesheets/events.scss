@@ -1,0 +1,58 @@
+@mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+@mixin horizontal-align {
+  position: absolute;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+$imgKey: random(3);
+$list: 'https://s3-eu-west-1.amazonaws.com/wdi-11-natalie/hotdogs/watercolor_13_by_SadMonkeyDesign_res.jpg', 'https://s3-eu-west-1.amazonaws.com/wdi-11-natalie/hotdogs/watercolor_3_by_SadMonkeyDesign_res+(1).jpg', 'https://s3-eu-west-1.amazonaws.com/wdi-11-natalie/hotdogs/watercolor_3_by_SadMonkeyDesign_res.jpg';
+
+$nth: nth($list, $imgKey);
+
+.indiv-event:hover {
+  background-image: url($nth);
+
+  a {
+    color: white;
+  }
+}
+
+.indiv-event {
+  display: inline-block;
+  width: 30%;
+  height: 250px;
+  border: dotted 3px lightgray;
+  margin: 10px 10px 10px 10px;
+  padding: 10px;
+  background-size: cover;
+
+  a {
+    font-family: 'Dosis';
+    font-weight: 600;
+    font-size: 35px;
+  }
+
+  p {
+   @include vertical-align;
+  }
+
+  .event-place {
+    position:absolute;
+    @include horizontal-align;
+
+  }
+
+  .place-hide {
+    display:none;
+  }
+}

@@ -1,0 +1,67 @@
+#map-canvas {
+ height: 500px;
+ margin: 0px;
+ padding: 0px;
+}
+     
+#panel {
+ position: absolute;
+ top: 5px;
+ left: 50%;
+ margin-left: -180px;
+ z-index: 5;
+ background-color: #fff;
+ padding: 5px;
+ border: 1px solid #999;
+}
+
+.dog-block{
+  padding: 5px;
+  float: left;
+  width: 46%;
+  position: relative;
+  left: 52%;
+  display: inline-block;
+  overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  border: 3px double #A49FDF;
+  padding-bottom: 157px; 
+}
+
+.owner-block{
+  padding: 5px;
+  float: right;
+  width: 46%;
+  position: relative;
+  right: 52%;
+  display: inline-block;
+  overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  border: 3px double #b3e5e6;
+  img{
+    vertical-align: middle;
+    margin: auto 0;
+    padding-left: 140px;
+  }
+}
+
+.buddy-block{
+  clear: both;
+  padding: 20px;
+}
+
+div.profile-page{
+  display: inline-block;
+}
+
+#dog-name{
+  text-align: center;
+  font-size: 23px;
+}
+
+#owner-name{
+  text-align: center;
+  font-size: 23px;
+}

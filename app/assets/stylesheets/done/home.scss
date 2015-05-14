@@ -1,0 +1,76 @@
+$colors: purple, red, orange, yellow, green, blue, pink;
+
+#about-us {
+  text-align: center;
+  margin: 0 auto;
+  
+
+  #hotdogs {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 110px;
+    text-align: center;
+    color:white;
+  }
+
+  .window {
+    position:absolute;
+    padding-top: 200px;
+    width: 100%;
+    height:100%;
+    padding-bottom: 5px;
+  }
+
+  p {
+    margin-left: 300px;
+    margin-right: 300px;
+    font-size: 25px;    
+  }
+
+  h2 {
+    margin-bottom: 30px;
+    font-family: 'Raleway', sans-serif;
+    font-size: 50px;
+    font-weight: 700;
+    margin-top: 25px;
+  }
+
+  @for $i from 1 through 7 {
+    .window:nth-child(#{$i}){
+        top:($i - 1) * 100%;
+        background-color: lighten(nth($colors, random(length($colors))), 3%);
+    }
+  }
+
+  section span #space {
+    height:500px;
+    width:500px;
+  }
+}
+
+div #blank-space {
+  height:350px;
+  width:100%;
+}
+
+.registration {
+  button.btn.btn-default.btn-lg a {
+    text-decoration: none;
+    font-size: 20px;
+    margin-left: 5px;
+    margin-right: 5px;
+    letter-spacing: 1px;
+  }
+
+  button.btn.btn-default.btn-lg:hover {
+    background-color: #B3E6DF;
+    a {
+      color:white;
+    }
+  }
+}
+
+
+.tag-line {
+  margin-top: -30px;
+}

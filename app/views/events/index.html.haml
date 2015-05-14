@@ -1,0 +1,6 @@
+.index-page
+  %h2 join our community
+  - @events.each do |event|
+    .indiv-event
+      %p= link_to(event.name.downcase, event_path(event))
+      .event-place.place-hide=event.place.upcase

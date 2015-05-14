@@ -1,0 +1,22 @@
+General
+- geocoder not installed
+- letsrate gem bug
+
+Vinisha
+
+Natalie
+Sat 8:18pm - starting on writing associations
+8:28pm - added playdate associations and edited wrong associations (see gdocs)
+8:32pm - join table for migrations
+9:52pm - created join tables and tested on console. some dummy seed data.
+Sun 3:20pm - starting on acts as taggable gem
+3:34pm - added a separate UsersController to facilitate CRUD actions on users (for admins) as well as defining user_params for taggable gem. also generated the default devise user controllers and views.
+3:53pm - made reviews a nested route
+4:00pm - welcome page is created as events#home and has the route of '/'
+
+Mon 3:00pm - realized that id datatype should all be integers
+
+Tues 11:41pm - changed nav bar to conditional - user signed in or not
+
+
+Kudus

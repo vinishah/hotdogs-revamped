@@ -1,0 +1,142 @@
+- if @user.user_matches.length > 0
+  -if current_user.id != @user.id
+    -user_match_id1 = UserMatch.where(dog_requester_id:current_user.id, dog_requestee_id:@user.id)[0]
+    -user_match_id2 = UserMatch.where(dog_requestee_id:current_user.id, dog_requester_id:@user.id)[0]
+    - if user_match_id2 === nil
+      =link_to('Chat', user_match_path(user_match_id1.id))
+    - else
+      =link_to('Chat', user_match_path(user_match_id2.id))
+
+.dog-block
+  %h3 DOG DETAILS
+  %p#dog-name 
+    %strong Name of Dog:
+    = @user.dog_name 
+    %br/
+    = image_tag @user.dog_picture.detail.url
+  %br/
+
+  %p#dog-age.dog 
+    %strong Age of Dog:
+    = @user.dog_age
+  %br/
+
+  %p.dog 
+    %strong Dog's Bio:
+  %p.dog Puppy kitty ipsum dolor sit good dog swimming meow rover vaccine chew wagging critters fish leash feeder barky foot. Vaccine heel wet nose vitamins feathers window fleas food Scooby snacks bark parrot meow wet nose slobber toys Spike slobbery barky. Aquatic throw roll over teeth gimme five tooth toys good boy run fetch run fast tuxedo lazy dog brush fur chow. Fetch finch water dog birds dog house speak ferret purr harness. Tigger throw puppy tooth lick scratch dragging stick bark food. Kitten run swimming walk heel run fast roll over gimme five drool tabby teeth dinnertime walk leash pet food smooshy pet toys. Behavior Spike parakeet dinnertime yawn licks grooming play dead parrot roll over. Walk smooshy cockatiel catch cage purr Mittens paws collar. Polydactyl harness fish smooshy pet supplies biscuit slobber furry good boy.Heel collar slobber gimme five polydactyl stay barky lazy cat pet. Scratch warm pet gate lazy cat drool scratcher tooth fetch tabby carrier groom Fido. 
+  %br/
+
+  %p.dog 
+    %strong Gender of Dog:
+    = @user.gender 
+  %br/
+
+  %p.dog 
+    %strong Breed of Dog:
+    = @user.breed
+  %br/
+
+  %p.dog
+    %strong Neutered Status:
+    = @user.neutered 
+  %br/
+
+.owner-block
+  %h3 OWNER DETAILS
+  %p#owner-name.owner
+    %strong Name of Owner:
+    = @user.owner_name
+    %br/
+  -if @user.owner_picture.length < 5 
+    =image_tag @user.gravatar_url
+  -else 
+    = image_tag @user.owner_picture.detail.url
+
+  %p.owner 
+    %strong Owner's Bio:
+  %p.owner Attitude is everything. Jeans represent democracy in fashion. The difference between style and fashion is quality. I think there is something about luxury - it's not something people need, but it's what they want. It really pulls at their heart. Fashion can be this mysterious thing that you can't explain.  
+
+  %p.owner 
+    %strong Email Address:
+    = @user.email
+  %br/
+
+  %p
+    %strong Residential Address:
+  %address#address
+    = @user.address  
+
+  -# Google Maps #
+  %p#map-canvas
+
+.buddy-block
+  -# Add Buddy Button #
+  -if @user.id != current_user.id
+    %button#add-buddy-button{:data => {:dog_requester_id => current_user.id, :dog_requester => current_user, :dog_requestee_id => @user.id, :dog_requestee => @user}}
+      %span.buddy-status Add Buddy
+      %span.buddy-status.hide Buddy Requested
+
+  -if @user.id === current_user.id
+    .buddies
+      %p Your buddies are:
+      - current_user.user_matches.each do |buddy|
+        - buds = User.where(id:buddy.dog_requestee_id)
+
+
+
+  %p Your buddy requests:
+  - current_user.reverse_user_matches.each do |match|
+    -if match.dog_requestee_id == current_user.id
+      %p= User.find(match.dog_requester_id).dog_name
+    -if match.status == "pending"
+      %button#accept-request{:data => {:id => match.id}} Accept
+      %button#reject-request Reject
+    -else
+      %button#delete-buddy Delete Buddy
+
+  %p The buddies you have requested:
+  - current_user.user_matches.each do |match|
+    -if match.dog_requester_id == current_user.id
+      %p= User.find(match.dog_requestee_id).dog_name
+    -if match.status == "pending"
+      %button#pending Pending
+    -else
+      %button#accepted Accepted
+
+:javascript
+
+  var geocoder;
+  var map;
+  function initialize() {
+
+
+    geocoder = new google.maps.Geocoder();
+
+    var latlng = new google.maps.LatLng(51.519889, -0.068799);
+    var mapOptions = {
+      zoom: 16,
+      center: latlng
+    }
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    codeAddress();
+  }
+
+  function codeAddress() {
+    var address = $('#address').text();
+    if (address) {
+      geocoder.geocode( { 'address': address}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          map.setCenter(results[0].geometry.location);
+          var marker = new google.maps.Marker({
+            map: map,
+            position: results[0].geometry.location
+          });
+        } else {
+          alert('Geocode was not successful for the following reason: ' + status);
+        }
+      });
+      
+    };
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);

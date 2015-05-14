@@ -1,0 +1,22 @@
+.chatty
+  - id1 = @user_match.dog_requester_id 
+  - id2 = @user_match.dog_requestee_id 
+  - if id1 == current_user.id 
+    %h1 you are chatting with #{User.find(id2).dog_name}
+  - else
+    %h1 you are chatting with #{User.find(id1).dog_name}
+  #chatarea
+    #messagesbox
+      %ul#messages.message-screen
+        - msg_arr = []
+        - msg_arr.push(@user_match.messages.order(created_at: :desc))
+        - msg_arr.each do |msg|
+          - msg.each do |content|
+            %li= content.content
+    %input#inputbox{placeholder: 'say something'}
+    - if id1 == current_user.id
+      %button.btn#create-msg{value:id2} Send
+    - else 
+      %button.btn#create-msg{value:id1} Send
+    %button.hide Sent
+  .uid.hidden=current_user.dog_name
